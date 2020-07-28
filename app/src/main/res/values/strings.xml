@@ -1,3 +1,3 @@
 <resources>
-    <string name="app_name">MVVM Structure</string>
+    <string name="test" translatable="false">Kiểm tra</string>
 </resources>
