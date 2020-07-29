@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
+import androidx.core.content.edit
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import com.thedung.mvvmstructure.BuildConfig
@@ -49,4 +50,8 @@ class AppConfig @Inject constructor(context: Context) {
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )
     }
+
+    var isFirstRun: Boolean
+        get() = sharedPreferences.getBoolean(APP_FIRST_RUN, true)
+        set(value) = sharedPreferences.edit { putBoolean(APP_FIRST_RUN, value) }
 }

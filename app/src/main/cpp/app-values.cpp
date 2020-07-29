@@ -2,8 +2,8 @@
 #include <string>
 
 static const char encKey[] = "This is a secret key";
-static const char apiUrlProduct[] = "";
-static const char apiUrlDev[] = "";
+static const char apiUrlProduct[] = "https://5f20e5efdaa42f001666512d.mockapi.io/api/v1/";
+static const char apiUrlDev[] = "https://5f20e5efdaa42f001666512d.mockapi.io/api/v1/";
 
 extern "C" JNIEXPORT jstring
 
