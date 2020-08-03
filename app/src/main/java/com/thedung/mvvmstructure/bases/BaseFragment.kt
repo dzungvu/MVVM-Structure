@@ -1,5 +1,5 @@
 package com.thedung.mvvmstructure.bases
 
-class BaseFragment {
+abstract class BaseFragment {
 
 }

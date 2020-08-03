@@ -1,5 +1,5 @@
 package com.thedung.mvvmstructure.bases
 
-class BaseResponse {
+abstract class BaseResponse {
 
 }
