@@ -3,6 +3,7 @@ package com.thedung.mvvmstructure.di.module
 import com.google.gson.Gson
 import com.thedung.mvvmstructure.BuildConfig
 import com.thedung.mvvmstructure.services.MainService
+import com.thedung.mvvmstructure.services.adapter.NetworkResponseAdapterFactory
 import com.thedung.mvvmstructure.utils.debug
 import dagger.Module
 import dagger.Provides
@@ -55,11 +56,16 @@ object NetworkModule {
     }
 
     @Provides
-    fun providesClient(interceptor: Interceptor, gson: Gson): Retrofit {
+    fun providesClient(
+        interceptor: Interceptor,
+        gson: Gson,
+        adapterFactory: NetworkResponseAdapterFactory
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(getBaseUrl())
             .client(createHttpClient(interceptor))
             .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(adapterFactory)
             .build()
     }
 
