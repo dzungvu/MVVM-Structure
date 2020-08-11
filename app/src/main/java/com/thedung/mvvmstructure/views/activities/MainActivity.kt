@@ -21,7 +21,10 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
-        viewModel.triggerTestData()
+        btnGetData.setOnClickListener {
+            tvCenter.text = ""
+            viewModel.triggerTestData()
+        }
     }
 
     override fun observerData() {

@@ -3,7 +3,7 @@ package com.thedung.mvvmstructure.utils
 import android.util.Log
 
 
-class LogUtil {
+object LogUtil {
 
     private fun getLineNumber(): Int {
         return try {
