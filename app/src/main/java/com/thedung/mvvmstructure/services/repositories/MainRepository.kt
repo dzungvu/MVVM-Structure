@@ -29,13 +29,13 @@ class MainRepository @Inject constructor(
         when (response) {
             is NetworkResponse.Success -> {
                 emit(Resource.Success(response.body))
-                val testArr = arrayListOf<TestDataBase>()
-                for (item in response.body) {
-                    LogUtil.i("MainRepository", item.name)
-                    testArr.add(TestDataBase(id = item.id, name = item.name, age = item.age))
-                }
-
-                testDao.insertTests(testArr)
+//                val testArr = arrayListOf<TestDataBase>()
+//                for (item in response.body) {
+//                    LogUtil.i("MainRepository", item.name)
+//                    testArr.add(TestDataBase(id = item.id, name = item.name, age = item.age))
+//                }
+//
+//                testDao.insertTests(testArr)
             }
             else -> {
                 throw response.toError()

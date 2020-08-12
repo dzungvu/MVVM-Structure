@@ -1,11 +1,16 @@
 package com.thedung.mvvmstructure.views.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.thedung.mvvmstructure.R
 import com.thedung.mvvmstructure.bases.BaseActivity
 import com.thedung.mvvmstructure.services.Status
+import com.thedung.mvvmstructure.utils.LogUtil
+import com.thedung.mvvmstructure.views.adapter.test.TestApiAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -14,6 +19,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 class MainActivity : BaseActivity() {
     private val viewModel: MainViewModel by viewModels()
+    private var adapter = TestApiAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +28,8 @@ class MainActivity : BaseActivity() {
 
     override fun initView() {
         btnGetData.setOnClickListener {
-            tvCenter.text = ""
+            rcvTestApi.adapter = adapter
+            rcvTestApi.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
             viewModel.triggerTestData()
         }
     }
@@ -31,15 +38,16 @@ class MainActivity : BaseActivity() {
         viewModel.testData.observe(this, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
-                    tvCenter.text = it.data?.toString()
+                    btnGetData.text = "Success"
+                    adapter.submitData(it.data ?: emptyList())
                 }
 
                 Status.LOADING -> {
-                    tvCenter.text = "Loading"
+                    btnGetData.text = "Loading"
                 }
 
                 Status.FAILED -> {
-                    tvCenter.text = it.errorMessage
+                    btnGetData.text = it.errorMessage
                 }
             }
         })
