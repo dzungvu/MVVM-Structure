@@ -21,7 +21,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
-        viewModel.triggerTestData()
+//        viewModel.triggerTestData()
     }
 
     override fun observerData() {

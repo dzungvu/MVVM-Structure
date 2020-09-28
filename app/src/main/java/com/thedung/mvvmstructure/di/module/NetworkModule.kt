@@ -2,6 +2,7 @@ package com.thedung.mvvmstructure.di.module
 
 import com.google.gson.Gson
 import com.thedung.mvvmstructure.BuildConfig
+import com.thedung.mvvmstructure.services.CharacterServices
 import com.thedung.mvvmstructure.services.MainService
 import com.thedung.mvvmstructure.utils.debug
 import dagger.Module
@@ -31,6 +32,16 @@ object NetworkModule {
 
     private fun getBaseUrl(): String {
         return getBaseUrl(BuildConfig.DEBUG)
+    }
+
+    private external fun getPublicKeyFromEx(): String
+    private fun getPublicKey(): String {
+        return getPublicKeyFromEx()
+    }
+
+    private external fun getPrivateKeyFromEx(): String
+    private fun getPrivateKey(): String {
+        return getPrivateKeyFromEx()
     }
 
     @Provides
@@ -67,4 +78,9 @@ object NetworkModule {
     @Reusable
     fun providesMainService(retrofit: Retrofit): MainService =
         retrofit.create(MainService::class.java)
+
+    @Provides
+    @Reusable
+    fun providesCharacterService(retrofit: Retrofit): CharacterServices =
+        retrofit.create(CharacterServices::class.java)
 }
