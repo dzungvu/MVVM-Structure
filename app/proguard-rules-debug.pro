@@ -25,11 +25,8 @@
 -verbose
 -repackageclasses
 
--keepattributes Annotation
--keepattributes Signature
--keepattributes EnclosingMethod
--keepattributes InnerClasses
--keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable        # Keep file names and line numbers.
+-keep public class * extends java.lang.Exception  # Optional: Keep custom exceptions.
 
 # Retain service method parameters when optimizing.
 -keepclassmembers,allowshrinking,allowobfuscation interface * {
@@ -44,7 +41,7 @@
 
 # Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
 # EnclosingMethod is required to use InnerClasses.
--keepattributes Signature, InnerClasses, EnclosingMethod
+-keepattributes Annotation, Signature, InnerClasses, EnclosingMethod, *Annotation*
 
 # Retrofit does reflection on method and parameter annotations.
 -keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
@@ -82,24 +79,3 @@
 }
 
 -keep class com.google.crypto.** { *; }
-
--assumenosideeffects class kotlin.jvm.internal.Intrinsics {
-    public static void checkExpressionValueIsNotNull(...);
-    public static void checkNotNullExpressionValue(...);
-    public static void checkReturnedValueIsNotNull(...);
-    public static void checkFieldIsNotNull(...);
-    public static void checkParameterIsNotNull(...);
-}
-
--assumenosideeffects class android.util.Log {
-    public static boolean isLoggable(java.lang.String, int);
-    public static int v(...);
-    public static int d(...);
-    public static int i(...);
-}
-
--assumenosideeffects class vn.fpt.foxytv.classes.utils.Log {
-    public *** v(...);
-    public *** d(...);
-    public *** i(...);
-}

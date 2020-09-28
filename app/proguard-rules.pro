@@ -98,7 +98,7 @@
     public static int i(...);
 }
 
--assumenosideeffects class vn.fpt.foxytv.classes.utils.Log {
+-assumenosideeffects class com.thedung.mvvmstructure.utils.LogUtil {
     public *** v(...);
     public *** d(...);
     public *** i(...);
