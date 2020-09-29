@@ -1,7 +1,6 @@
 package com.thedung.mvvmstructure.models
 
 import com.google.gson.annotations.SerializedName
-import com.thedung.mvvmstructure.models.characters.CharacterItemResponse
 
 data class DataResponse<DATA>(
     @SerializedName("code")

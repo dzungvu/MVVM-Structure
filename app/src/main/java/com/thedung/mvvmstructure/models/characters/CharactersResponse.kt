@@ -1,7 +1,7 @@
 package com.thedung.mvvmstructure.models.characters
 
 import com.google.gson.annotations.SerializedName
-import com.thedung.mvvmstructure.models.Url
+import com.thedung.mvvmstructure.models.UrlResponse
 
 //data class CharactersResponse(
 //    @SerializedName("code")
@@ -22,68 +22,68 @@ import com.thedung.mvvmstructure.models.Url
 
 data class CharacterItemResponse(
     @SerializedName("offset")
-    val offset: Int,
+    val offset: Int?,
     @SerializedName("limit")
-    val limit: Int,
+    val limit: Int?,
     @SerializedName("total")
-    val total: Int,
+    val total: Int?,
     @SerializedName("count")
-    val count: Int,
+    val count: Int?,
     @SerializedName("results")
-    val results: List<CharacterItemResultResponse>
+    val results: List<CharacterItemResultResponse>?
 )
 
 data class CharacterItemResultResponse(
     @SerializedName("id")
-    val id: Int,
+    val id: Int?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("modified")
-    val modified: String,
+    val modified: String?,
     @SerializedName("thumbnail")
-    val thumbnail: CharacterItemResultThumbnailResponse,
+    val thumbnail: CharacterItemResultThumbnailResponse?,
     @SerializedName("resourceURI")
-    val resourceURI: String,
+    val resourceURI: String?,
     @SerializedName("comics")
-    val comics: CharacterItemResultGeneralResponse,
+    val comics: CharacterItemResultGeneralResponse?,
     @SerializedName("series")
-    val series: CharacterItemResultGeneralResponse,
+    val series: CharacterItemResultGeneralResponse?,
     @SerializedName("stories")
-    val stories: CharacterItemResultGeneralResponse,
+    val stories: CharacterItemResultGeneralResponse?,
     @SerializedName("events")
-    val events: CharacterItemResultGeneralResponse,
+    val events: CharacterItemResultGeneralResponse?,
     @SerializedName("urls")
-    val urls: List<Url>
+    val urlResponses: List<UrlResponse>?
 )
 
 //regionThumbnail
 data class CharacterItemResultThumbnailResponse(
     @SerializedName("path")
-    val path: String,
+    val path: String?,
     @SerializedName("extension")
-    val extension: String
+    val extension: String?
 )
 //endregion
 
 //regionGeneral
 data class CharacterItemResultGeneralResponse(
     @SerializedName("available")
-    val available: Int,
+    val available: Int?,
     @SerializedName("collectionURI")
-    val collectionURI: String,
+    val collectionURI: String?,
     @SerializedName("items")
-    val items: List<CharacterItemResultGeneralItemResponse>,
+    val items: List<CharacterItemResultGeneralItemResponse>?,
     @SerializedName("returned")
-    val returned: Int
+    val returned: Int?
 )
 
 data class CharacterItemResultGeneralItemResponse(
     @SerializedName("resourceURI")
-    val resourceURI: String,
+    val resourceURI: String?,
     @SerializedName("name")
-    val name: String
+    val name: String?
 )
 //endregion
 

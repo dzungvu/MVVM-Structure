@@ -1,16 +1,12 @@
 package com.thedung.mvvmstructure.views.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.thedung.mvvmstructure.R
 import com.thedung.mvvmstructure.bases.BaseActivity
-import com.thedung.mvvmstructure.services.Status
+import com.thedung.mvvmstructure.services.Resource
 import com.thedung.mvvmstructure.utils.LogUtil
-import com.thedung.mvvmstructure.views.adapter.test.TestApiAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,7 +15,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 class MainActivity : BaseActivity() {
     private val viewModel: MainViewModel by viewModels()
-    private var adapter = TestApiAdapter()
+    private val TAG = this::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,27 +23,22 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initView() {
-//        btnGetData.setOnClickListener {
-//            rcvTestApi.adapter = adapter
-//            rcvTestApi.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-//            viewModel.triggerTestData()
-//        }
+        btnGetData.setOnClickListener {
+            viewModel.triggerCharacterContent()
+        }
     }
 
     override fun observerData() {
-        viewModel.testData.observe(this, Observer {
-            when (it.status) {
-                Status.SUCCESS -> {
-                    btnGetData.text = "Success"
-                    adapter.submitData(it.data ?: emptyList())
+        viewModel.characterData.observe(this, Observer {
+            when (it) {
+                is Resource.Loading -> {
+                    LogUtil.d(TAG, "Loading")
                 }
-
-                Status.LOADING -> {
-                    btnGetData.text = "Loading"
+                is Resource.Success -> {
+                    LogUtil.d(TAG, "Success with ${it.data}")
                 }
-
-                Status.FAILED -> {
-                    btnGetData.text = it.errorMessage
+                is Resource.Error -> {
+                    LogUtil.d(TAG, it.errorMsg)
                 }
             }
         })

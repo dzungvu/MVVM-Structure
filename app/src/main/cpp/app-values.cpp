@@ -2,8 +2,8 @@
 #include <string>
 
 static const char encKey[] = "This is a secret key";
-static const char apiUrlProduct[] = "http://gateway.marvel.com/";
-static const char apiUrlDev[] = "http://gateway.marvel.com/";
+static const char apiUrlProduct[] = "https://gateway.marvel.com/";
+static const char apiUrlDev[] = "https://gateway.marvel.com/";
 static const char publicKey[] = "35a902600aab81e4e369faa17dfcc69a";
 static const char privateKey[] = "a42649460cc88ecd7940a2890f74653dfdb6e6df";
 
