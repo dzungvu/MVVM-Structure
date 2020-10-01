@@ -1,3 +1,3 @@
 <resources>
-    <string name="test" translatable="false">Kiểm tra</string>
+    <string name="test">Kiểm tra</string>
 </resources>
