@@ -27,7 +27,7 @@ MetaData.native_lib = "native-lib"
 MetaData.app_name = app_name
 MetaData.app_name_dev = "$app_name DEV"
 
-def Deps= [:]
+def Deps = [:]
 ext.Deps = Deps
 Deps.multidex = "androidx.multidex:multidex:$multidex"
 Deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$constraint_layout"
